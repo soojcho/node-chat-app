@@ -9,11 +9,7 @@ socket.on('connect', function () {
   //   text: 'hey this is soo'
   // });
 
-//create message from client
-  socket.emit('createMessage',{
-    from: 'sample name',
-    text: 'hello there'
-  });
+
 });
 
 socket.on('disconnect', function () {
