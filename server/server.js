@@ -18,13 +18,20 @@ app.use(express.static(publicPath));
 //then fire function when it's connected
 io.on('connection',(socket)=>{
   console.log('new user connected');
-
-  //emit creates new event, send custom data in object (tosend multiple pieces of data) in second argument
-  // socket.emit('newEmail',{
-  //   from: 'mike@example.com',
-  //   text: 'hey what is going on',
-  //   createdAt: 123
-  // });
+  //socket.emit
+  //text: 'welcome to the chat app'
+  socket.emit('newMessage',{
+    from: 'Admin',
+    text: 'Welcome to the chat app',
+    createdAt: new Date().getTime()
+  });
+  //socket.broadcast.emit
+  //text: 'new user joined'
+  socket.broadcast.emit('newMessage',{
+    from: 'Admin',
+    text: 'new user joined',
+    createdAt: new Date().getTime()
+  })
 
 //prints message created from client in cmd/server
   socket.on('createMessage',(message) =>{
@@ -34,6 +41,11 @@ io.on('connection',(socket)=>{
       text: message.text,
       createdAt: new Date().getTime()
     });
+    // socket.broadcast.emit('newMessage',{
+    //   from: message.from,
+    //   text: message.text,
+    //   createAt: new Date().getTime()
+    // });
   });
 
   socket.on('disconnect',()=>{
