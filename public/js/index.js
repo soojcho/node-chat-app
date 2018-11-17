@@ -9,6 +9,7 @@ socket.on('connect', function () {
   //   text: 'hey this is soo'
   // });
 
+//create message from client
   socket.emit('createMessage',{
     from: 'sample name',
     text: 'hello there'
@@ -24,6 +25,7 @@ socket.on('disconnect', function () {
 //   console.log('new email', email);
 // });
 
+//print message from server in client
 socket.on('newMessage', function (message){
   console.log('new message', message);
 });

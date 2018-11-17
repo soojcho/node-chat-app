@@ -26,13 +26,14 @@ io.on('connection',(socket)=>{
   //   createdAt: 123
   // });
 
-//console log prints when received
+//emits message from server to client
   socket.emit('newMessage',{
     from: 'sample rando person',
     text: 'this is a new message',
     createdAt: 234
   });
 
+//prints message created from client in cmd/server
   socket.on('createMessage',(createMessage) =>{
     console.log('create Message',createMessage);
   });
